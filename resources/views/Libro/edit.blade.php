@@ -1,83 +1,140 @@
 @extends('layouts.app')
+
 @section('content')
-<div class="row">
-    <section class="container">
-        <div class="col-md-8 col-md-offset-2">
-            @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <strong>Error!</strong> Revise los campos obligatorios.<br><br>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-            @if(Session::has('success'))
-            <div class="alert alert-info">
-                {{Session::get('success')}}
-            </div>
-            @endif
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Nuevo Libro</h3>
+                <div class="card-header">
+                <h3>Actualizar datos del libro "{{$libro->nombre}}"</h3>
                 </div>
-                <div class="panel-body">
-                    <div class="table-container">
-                        <form method="POST" action="{{ route('libro.update',$libro->id) }}" role="form">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="nombre" id="nombre" class="form-control input-sm"
-                                            value="{{$libro->nombre}}">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="npagina" id="npagina" class="form-control input-sm"
-                                            value="{{$libro->npagina}}">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <textarea name="resumen" class="form-control input-sm"
-                                    placeholder="Resumen">{{$libro->resumen}}</textarea>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="edicion" id="edicion" class="form-control input-sm"
-                                            value="{{$libro->edicion}}">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="precio" id="precio" class="form-control input-sm"
-                                            value="{{$libro->precio}}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <textarea name="autor" class="form-control input-sm"
-                                    placeholder="Autor">{{$libro->autor}}</textarea>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <input type="submit" value="Actualizar" class="btn btn-success btn-block">
-                                    <a href="{{ route('libro.index') }}" class="btn btn-info btn-block">Atrás</a>
-                                </div>
-
-                            </div>
-                        </form>
+                <div class="card-body">
+                    @if(Session::has('success'))
+                    <div class="alert alert-success">
+                        {{Session::get('success')}}
                     </div>
-                </div>
+                    @endif
 
+                    <form method="POST" action="{{ route('libro.update',$libro->id) }}" role="form">
+                        @csrf
+                        <input name="_method" type="hidden" value="PATCH">
+
+                        <div class="form-group row">
+                            <label for="nombre"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Nombre del Libro') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="nombre" type="text"
+                                    class="form-control @error('nombre') is-invalid @enderror" name="nombre"
+                                    value="{{$libro->nombre}}" required autocomplete="nombre" autofocus>
+
+                                @error('nombre')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="npagina"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Número de Páginas') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="npagina" type="text"
+                                    class="form-control @error('npagina') is-invalid @enderror" name="npagina"
+                                    value="{{$libro->npagina}}" required autocomplete="npagina">
+
+                                @error('npagina')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="edicion"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Edición') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="edicion" type="text"
+                                    class="form-control @error('edicion') is-invalid @enderror" name="edicion"
+                                    value="{{$libro->edicion}}" required autocomplete="npagina">
+
+                                @error('edicion')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="resumen"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Resúmen del Libro') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="resumen" type="textarea"
+                                    class="form-control @error('resumen') is-invalid @enderror" name="resumen"
+                                    value="{{$libro->resumen}}" required autocomplete="resumen">
+
+                                @error('resumen')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="precio"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Precio del Libro') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="precio" type="text"
+                                    class="form-control @error('precio') is-invalid @enderror" name="precio"
+                                    value="{{$libro->precio}}" required autocomplete="precio">
+
+                                @error('precio')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="autor"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Autor del Libro') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="autor" type="text" class="form-control @error('autor') is-invalid @enderror"
+                                    name="autor" value="{{$libro->autor}}" required autocomplete="autor">
+
+                                @error('autor')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-success">
+                                        {{ __('Guardar') }}
+                                </button>
+
+                                <a href="{{ route('libro.index') }}" class="btn btn-warning">Atrás</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </section>
-    @endsection
+    </div>
+</div>
+@endsection

@@ -11,18 +11,8 @@
                 </div>
 
                 <div class="card-body">
-                    @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <strong>Error!</strong> Revise los campos obligatorios.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
                     @if(Session::has('success'))
-                    <div class="alert alert-info">
+                    <div class="alert alert-success">
                         {{Session::get('success')}}
                     </div>
                     @endif
@@ -88,7 +78,7 @@
                             <div class="col-md-6">
                                 <input id="resumen" type="textarea"
                                     class="form-control @error('resumen') is-invalid @enderror" name="resumen"
-                                    value="{{ old('edicion') }}" required autocomplete="resumen">
+                                    value="{{ old('resumen') }}" required autocomplete="resumen">
 
                                 @error('resumen')
                                 <span class="invalid-feedback" role="alert">
@@ -105,7 +95,7 @@
                             <div class="col-md-6">
                                 <input id="precio" type="text"
                                     class="form-control @error('precio') is-invalid @enderror" name="precio"
-                                    value="{{ old('edicion') }}" required autocomplete="precio">
+                                    value="{{ old('precio') }}" required autocomplete="precio">
 
                                 @error('precio')
                                 <span class="invalid-feedback" role="alert">
@@ -120,7 +110,7 @@
 
                             <div class="col-md-6">
                                 <input id="autor" type="text" class="form-control @error('autor') is-invalid @enderror"
-                                    name="autor" value="{{ old('edicion') }}" required autocomplete="autor">
+                                    name="autor" value="{{ old('autor') }}" required autocomplete="autor">
 
                                 @error('autor')
                                 <span class="invalid-feedback" role="alert">
@@ -146,12 +136,3 @@
     </div>
 </div>
 @endsection
-
-@section('content')
-<div class="container">
-    <section class="content">
-        <div class="col-md-8 col-md-offset-2">
-
-        </div>
-    </section>
-    @endsection
