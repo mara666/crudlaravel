@@ -38,8 +38,25 @@ class LibroController extends Controller
      */
     public function store(Request $request)
     {
+        $reglas = [
+            'nombre'=>'required|string|min:3|unique:libros,nombre', 
+            'resumen'=>'required|string', 
+            'npagina'=>'required|integer|min:0|max:2500', 
+            'edicion'=>'required|numeric|min:0', 
+            'autor'=>'required|string', 
+            'precio'=>'required|numeric|min:0'
+        ];
+
+        $mensajes = [
+            'string'=>'El campo :attribute debe ser un texto', 
+            'min'=>'El campo :attribute debe tener un minimo de :min', 
+            'max'=>'El campo :attribute debe tener un máximo de :max', 
+            'numeric'=>'El campo :attribute debe ser un numero', 
+            'integer'=>'El campo :attribute debe ser un número entero', 
+            'unique'=>'El campo :attribute se encuentra repetido'
+        ];
         //
-        $this->validate($request,[ 'nombre'=>'required', 'resumen'=>'required', 'npagina'=>'required', 'edicion'=>'required', 'autor'=>'required', 'npagina'=>'required', 'precio'=>'required']);
+        $this->validate($request, $reglas, $mensajes);
         Libro::create($request->all());
         return redirect()->route('libro.index')->with('success','Registro creado satisfactoriamente');
     }
@@ -78,8 +95,24 @@ class LibroController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $reglas = [
+            'nombre'=>'required|string|min:3', 
+            'resumen'=>'required|string', 
+            'npagina'=>'required|integer|min:0|max:2500', 
+            'edicion'=>'required|numeric|min:0', 
+            'autor'=>'required|string', 
+            'precio'=>'required|numeric|min:0'
+        ];
+
+        $mensajes = [
+            'string'=>'El campo :attribute debe ser un texto', 
+            'min'=>'El campo :attribute debe tener un minimo de :min', 
+            'max'=>'El campo :attribute debe tener un máximo de :max', 
+            'numeric'=>'El campo :attribute debe ser un numero', 
+            'integer'=>'El campo :attribute debe ser un número entero'
+        ];
         //
-        $this->validate($request,[ 'nombre'=>'required', 'resumen'=>'required', 'npagina'=>'required', 'edicion'=>'required', 'autor'=>'required', 'npagina'=>'required', 'precio'=>'required']);
+        $this->validate($request, $reglas, $mensajes);
  
         libro::find($id)->update($request->all());
         return redirect()->route('libro.index')->with('success','Registro actualizado satisfactoriamente');
