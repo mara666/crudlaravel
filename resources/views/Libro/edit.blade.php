@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -11,11 +11,11 @@
                 </div>
 
                 <div class="card-body">
-                    @if(Session::has('success'))
+                    {{-- @if(Session::has('success'))
                     <div class="alert alert-success">
                         {{Session::get('success')}}
                     </div>
-                    @endif
+                    @endif --}}
 
                     <form method="POST" action="{{ route('libro.update',$libro->id) }}" role="form">
                         @csrf

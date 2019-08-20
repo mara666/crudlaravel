@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -11,12 +11,6 @@
                 </div>
 
                 <div class="card-body">
-                    @if(Session::has('success'))
-                    <div class="alert alert-success">
-                        {{Session::get('success')}}
-                    </div>
-                    @endif
-
                     <form method="POST" action="{{ route('libro.store') }}">
                         @csrf
 
