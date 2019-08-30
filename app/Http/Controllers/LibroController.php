@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Libro;
+use App\Autor;
 
 use Illuminate\Http\Request;
 
@@ -14,8 +15,9 @@ class LibroController extends Controller
      */
     public function index()
     {
-        $libros = Libro::orderBy('id','DESC')->paginate(3);
-        return view('libros.index',compact('libros')); 
+        $autors = Autor::all();
+        $libros = Libro::orderBy('id','DESC')->paginate(10);
+        return view('libros.index',compact('libros', 'autors')); 
     }
 
     /**
@@ -25,7 +27,8 @@ class LibroController extends Controller
      */
     public function create()
     {
-        return view('libros.create');
+        $autors = Autor::all();
+        return view('libros.create', compact('autors'));
     }
 
     /**
@@ -41,7 +44,7 @@ class LibroController extends Controller
             'resumen'=>'required|string', 
             'npagina'=>'required|integer|min:0|max:2500', 
             'edicion'=>'required|numeric|min:0', 
-            'autor'=>'required|string', 
+            "autor" => "required|exists:autors,id",
             'precio'=>'required|numeric|min:0'
         ];
 
@@ -55,7 +58,18 @@ class LibroController extends Controller
         ];
         
         $this->validate($request, $reglas, $mensajes);
-        Libro::create($request->all());
+
+        $libro = new Libro();
+
+        $libro->nombre = $request->nombre;
+        $libro->resumen = $request->resumen;
+        $libro->npagina = $request->npagina;
+        $libro->edicion = $request->edicion;
+        $libro->autor_id = $request->autor;
+        $libro->precio = $request->precio;
+  
+        $libro->save();
+
         return redirect()->route('libro.index');
     }
 
@@ -78,7 +92,8 @@ class LibroController extends Controller
      */
     public function edit(Libro $libro)
     {
-        return view('libros.edit',compact('libro'));
+        $autors = Autor::all();
+        return view('libros.edit',compact('libro', 'autors'));
     }
 
     /**
@@ -95,7 +110,7 @@ class LibroController extends Controller
             'resumen'=>'required|string', 
             'npagina'=>'required|integer|min:0|max:2500', 
             'edicion'=>'required|numeric|min:0', 
-            'autor'=>'required|string', 
+            "autor" => "required", 
             'precio'=>'required|numeric|min:0'
         ];
 
@@ -109,9 +124,18 @@ class LibroController extends Controller
         
         $this->validate($request, $reglas, $mensajes);
  
-        $libro->update($request->all());
+        $libro = new Libro();
+
+        $libro->nombre = $request->nombre;
+        $libro->resumen = $request->resumen;
+        $libro->npagina = $request->npagina;
+        $libro->edicion = $request->edicion;
+        $libro->autor_id = $request->autor;
+        $libro->precio = $request->precio;
+  
+        $libro->save();
+        
         return redirect()->route('libro.index');
- 
     }
 
     /**
@@ -124,6 +148,5 @@ class LibroController extends Controller
     {
         $libro->delete();
         return redirect()->route('libro.index');
-
     }
 }

@@ -98,18 +98,23 @@
                                 @enderror
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label for="autor"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Autor del Libro') }}</label>
-
+                            <label for="autor" class="col-md-4 col-form-label text-md-right">{{ __('Autor') }}</label>
+                  
                             <div class="col-md-6">
-                                <input id="autor" type="text" class="form-control @error('autor') is-invalid @enderror"
-                                    name="autor" value="{{ old('autor') }}" required autocomplete="autor">
-
+                                <select id="autor" class="form-control @error('autor') is-invalid @enderror" name="autor" required>
+                                  @foreach ($autors as $autor)
+                                    <option value="{{$autor->id}}" {{$autor->id == old("autor") ? "selected" : ""}}>
+                                      {{$autor->nombre}}
+                                    </option>
+                                  @endforeach
+                  
+                                </select>
                                 @error('autor')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                         </div>

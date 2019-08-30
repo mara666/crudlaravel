@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Autor;
+use App\Libro;
+
 use Illuminate\Http\Request;
 
 class AutorController extends Controller
@@ -14,7 +16,9 @@ class AutorController extends Controller
      */
     public function index()
     {
-        //
+        $libros = Libro::all();
+        $autors = Autor::orderBy('id','DESC')->paginate(10);
+        return view('autors.index',compact('autors', 'autors'));
     }
 
     /**
@@ -24,7 +28,8 @@ class AutorController extends Controller
      */
     public function create()
     {
-        //
+        $autors = Autor::all();
+        return view('autors.create', compact('autors'));
     }
 
     /**
@@ -35,7 +40,28 @@ class AutorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reglas = [
+            'nombre'=>'required|string|min:3|unique:autors,nombre'
+        ];
+
+        $mensajes = [
+            'string'=>'El campo :attribute debe ser un texto', 
+            'min'=>'El campo :attribute debe tener un minimo de :min', 
+            'max'=>'El campo :attribute debe tener un máximo de :max', 
+            'numeric'=>'El campo :attribute debe ser un numero', 
+            'integer'=>'El campo :attribute debe ser un número entero', 
+            'unique'=>'El campo :attribute se encuentra repetido'
+        ];
+        
+        $this->validate($request, $reglas, $mensajes);
+
+        $autor = new Autor();
+
+        $autor->nombre = $request->nombre;
+  
+        $autor->save();
+
+        return redirect()->route('autor.index');
     }
 
     /**
@@ -46,7 +72,7 @@ class AutorController extends Controller
      */
     public function show(Autor $autor)
     {
-        //
+        return  view('autors.show',compact('autor'));
     }
 
     /**
@@ -57,7 +83,8 @@ class AutorController extends Controller
      */
     public function edit(Autor $autor)
     {
-        //
+        $libros = Autor::all();
+        return view('autors.edit',compact('autor', 'libros'));
     }
 
     /**
@@ -69,7 +96,28 @@ class AutorController extends Controller
      */
     public function update(Request $request, Autor $autor)
     {
-        //
+        $reglas = [
+            'nombre'=>'required|string|min:3'
+        ];
+
+        $mensajes = [
+            'string'=>'El campo :attribute debe ser un texto', 
+            'min'=>'El campo :attribute debe tener un minimo de :min', 
+            'max'=>'El campo :attribute debe tener un máximo de :max', 
+            'numeric'=>'El campo :attribute debe ser un numero', 
+            'integer'=>'El campo :attribute debe ser un número entero', 
+            'unique'=>'El campo :attribute se encuentra repetido'
+        ];
+        
+        $this->validate($request, $reglas, $mensajes);
+
+        $autor = new Autor();
+
+        $autor->nombre = $request->nombre;
+  
+        $autor->save();
+
+        return redirect()->route('autor.index');
     }
 
     /**
@@ -80,6 +128,7 @@ class AutorController extends Controller
      */
     public function destroy(Autor $autor)
     {
-        //
+        $autor->delete();
+        return redirect()->route('autor.index');
     }
 }

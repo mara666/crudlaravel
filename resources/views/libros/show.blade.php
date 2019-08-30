@@ -10,7 +10,7 @@
                     <p>Resumen: {{$libro->resumen}}</p>
                     <p>N° de páginas: {{$libro->npagina}}</p>
                     <p>Edición: {{$libro->edicion}}</p>
-                    <p>Autor: {{$libro->autor}}</p>
+                    <p>Autor: {{$libro->autor->nombre}}</p>
                     <p>Precio: {{$libro->precio}}</p>
                 </div>
             </div>

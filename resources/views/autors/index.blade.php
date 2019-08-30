@@ -6,10 +6,10 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="pull-left">
-                        <h3>Listado de Libros</h3><br>
+                        <h3>Listado de Autores</h3><br>
                     </div>
                     <div class="btn-group">
-                        <a href="{{ route('libro.create') }}" class="btn btn-warning">Añadir un nuevo Libro</a>
+                        <a href="{{ route('autor.create') }}" class="btn btn-warning">Añadir un nuevo Autor</a>
                     </div>
                     <br><br>
                 </div>
@@ -17,29 +17,19 @@
                         <table id="mytable" class="table table-bordred table-striped">
                             <thead>
                                 <th>Nombre</th>
-                                <th>Resumen</th>
-                                <th>N° Páginas</th>
-                                <th>Edicion</th>
-                                <th>Autor</th>
-                                <th>Precio</th>
                             </thead>
                             <tbody>
-                                @forelse ($libros as $libro)
+                                @forelse ($autors as $autor)
                                     <tr>
-                                        <td>{{$libro->nombre}}</td>
-                                        <td>{{$libro->resumen}}</td>
-                                        <td>{{$libro->npagina}}</td>
-                                        <td>{{$libro->edicion}}</td>
-                                        <td>{{$libro->autor->nombre}}</td>
-                                        <td>{{$libro->precio}}</td>
+                                        <td>{{$autor->nombre}}</td>
                                         <td>
-                                            <a class="btn btn-info btn-xs" href="{{ route('libro.show', $libro->id) }}"></a>
+                                            <a class="btn btn-info btn-xs" href="{{ route('autor.show', $autor->id) }}"></a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary btn-xs" href="{{ route('libro.edit', $libro->id) }}"></a>
+                                            <a class="btn btn-primary btn-xs" href="{{ route('autor.edit', $autor->id) }}"></a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('libro.destroy', $libro->id)}}" method="post"> <!--<i class="far fa-edit"></i>-->
+                                            <form action="{{ route('autor.destroy', $autor->id)}}" method="post"> <!--<i class="far fa-edit"></i>-->
                                                 @csrf
                                                 @method('DELETE')
 
@@ -56,7 +46,7 @@
                         </table>
                     </div>
                 </div>
-                {{ $libros->links() }}
+                {{ $autors->links() }}
             </div>
         </div>
     </div>
