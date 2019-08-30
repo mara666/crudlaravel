@@ -11,15 +11,9 @@
                 </div>
 
                 <div class="card-body">
-                    {{-- @if(Session::has('success'))
-                    <div class="alert alert-success">
-                        {{Session::get('success')}}
-                    </div>
-                    @endif --}}
-
                     <form method="POST" action="{{ route('libro.update',$libro->id) }}" role="form">
                         @csrf
-                        <input name="_method" type="hidden" value="PATCH">
+                        @method('PATCH')
 
                         <div class="form-group row">
                             <label for="nombre"
@@ -62,7 +56,7 @@
                             <div class="col-md-6">
                                 <input id="edicion" type="text"
                                     class="form-control @error('edicion') is-invalid @enderror" name="edicion"
-                                    value="{{$libro->edicion}}" required autocomplete="npagina">
+                                    value="{{$libro->edicion}}" required autocomplete="edicion">
 
                                 @error('edicion')
                                 <span class="invalid-feedback" role="alert">

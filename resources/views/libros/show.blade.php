@@ -5,13 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-            <div class="card-header"><h3>Detalles del libro "{{$libros->nombre}}"</h3></div>
+            <div class="card-header"><h3>Detalles del libro "{{$libro->nombre}}"</h3></div>
                 <div class="card-body">
-                    <p>Resumen: {{$libros->resumen}}</p>
-                    <p>N° de páginas: {{$libros->npagina}}</p>
-                    <p>Edición: {{$libros->edicion}}</p>
-                    <p>Autor: {{$libros->autor}}</p>
-                    <p>Precio: {{$libros->precio}}</p>
+                    <p>Resumen: {{$libro->resumen}}</p>
+                    <p>N° de páginas: {{$libro->npagina}}</p>
+                    <p>Edición: {{$libro->edicion}}</p>
+                    <p>Autor: {{$libro->autor}}</p>
+                    <p>Precio: {{$libro->precio}}</p>
                 </div>
             </div>
         </div>

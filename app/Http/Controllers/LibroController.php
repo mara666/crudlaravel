@@ -14,9 +14,8 @@ class LibroController extends Controller
      */
     public function index()
     {
-        //
-        $libros=Libro::orderBy('id','DESC')->paginate(3);
-        return view('Libro.index',compact('libros')); 
+        $libros = Libro::orderBy('id','DESC')->paginate(3);
+        return view('libros.index',compact('libros')); 
     }
 
     /**
@@ -26,8 +25,7 @@ class LibroController extends Controller
      */
     public function create()
     {
-        //
-        return view('Libro.create');
+        return view('libros.create');
     }
 
     /**
@@ -55,10 +53,10 @@ class LibroController extends Controller
             'integer'=>'El campo :attribute debe ser un número entero', 
             'unique'=>'El campo :attribute se encuentra repetido'
         ];
-        //
+        
         $this->validate($request, $reglas, $mensajes);
         Libro::create($request->all());
-        return redirect()->route('libro.index')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('libro.index');
     }
 
     /**
@@ -67,10 +65,9 @@ class LibroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Libro $libro)
     {
-        $libros=Libro::find($id);
-        return  view('libro.show',compact('libros'));
+        return  view('libros.show',compact('libro'));
     }
 
     /**
@@ -79,11 +76,9 @@ class LibroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Libro $libro)
     {
-        //
-        $libro=libro::find($id);
-        return view('libro.edit',compact('libro'));
+        return view('libros.edit',compact('libro'));
     }
 
     /**
@@ -93,7 +88,7 @@ class LibroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Libro $libro)
     {
         $reglas = [
             'nombre'=>'required|string|min:3', 
@@ -111,11 +106,11 @@ class LibroController extends Controller
             'numeric'=>'El campo :attribute debe ser un numero', 
             'integer'=>'El campo :attribute debe ser un número entero'
         ];
-        //
+        
         $this->validate($request, $reglas, $mensajes);
  
-        libro::find($id)->update($request->all());
-        return redirect()->route('libro.index')->with('success','Registro actualizado satisfactoriamente');
+        $libro->update($request->all());
+        return redirect()->route('libro.index');
  
     }
 
@@ -125,11 +120,10 @@ class LibroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Libro $libro)
     {
-        //
-        Libro::find($id)->delete();
-        return redirect()->route('libro.index')->with('success','Registro eliminado satisfactoriamente');
+        $libro->delete();
+        return redirect()->route('libro.index');
 
     }
 }
