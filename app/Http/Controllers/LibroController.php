@@ -44,7 +44,7 @@ class LibroController extends Controller
             'resumen'=>'required|string', 
             'npagina'=>'required|integer|min:0|max:2500', 
             'edicion'=>'required|numeric|min:0', 
-            "autor" => "required|exists:autors,id",
+            "autor_id" => "required|exists:autors,id",
             'precio'=>'required|numeric|min:0'
         ];
 
@@ -59,16 +59,18 @@ class LibroController extends Controller
         
         $this->validate($request, $reglas, $mensajes);
 
-        $libro = new Libro();
+        // $libro = new Libro();
 
-        $libro->nombre = $request->nombre;
-        $libro->resumen = $request->resumen;
-        $libro->npagina = $request->npagina;
-        $libro->edicion = $request->edicion;
-        $libro->autor_id = $request->autor;
-        $libro->precio = $request->precio;
+        // $libro->nombre = $request->nombre;
+        // $libro->resumen = $request->resumen;
+        // $libro->npagina = $request->npagina;
+        // $libro->edicion = $request->edicion;
+        // $libro->autor_id = $request->autor;
+        // $libro->precio = $request->precio;
   
-        $libro->save();
+        // $libro->save();
+
+        Libro::create($request->all());
 
         return redirect()->route('libro.index');
     }
@@ -81,7 +83,7 @@ class LibroController extends Controller
      */
     public function show(Libro $libro)
     {
-        return  view('libros.show',compact('libro'));
+        return  view('libros.show', compact('libro'));
     }
 
     /**
@@ -93,7 +95,7 @@ class LibroController extends Controller
     public function edit(Libro $libro)
     {
         $autors = Autor::all();
-        return view('libros.edit',compact('libro', 'autors'));
+        return view('libros.edit', compact('libro','autors'));
     }
 
     /**

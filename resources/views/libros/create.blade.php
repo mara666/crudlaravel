@@ -103,7 +103,7 @@
                             <label for="autor" class="col-md-4 col-form-label text-md-right">{{ __('Autor') }}</label>
                   
                             <div class="col-md-6">
-                                <select id="autor" class="form-control @error('autor') is-invalid @enderror" name="autor" required>
+                                <select id="autor_id" class="form-control @error('autor') is-invalid @enderror" name="autor_id" required>
                                   @foreach ($autors as $autor)
                                     <option value="{{$autor->id}}" {{$autor->id == old("autor") ? "selected" : ""}}>
                                       {{$autor->nombre}}
