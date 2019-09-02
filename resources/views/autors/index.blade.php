@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12 col-md-offset-2">
+    <div class="row justify-content-left">
+        <div class="col-md-4 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="pull-left">
@@ -23,17 +23,17 @@
                                     <tr>
                                         <td>{{$autor->nombre}}</td>
                                         <td>
-                                            <a class="btn btn-info btn-xs" href="{{ route('autor.show', $autor->id) }}"></a>
+                                            <a href="{{ route('autor.show', $autor->id) }}"><i class="fas fa-eye"></i></a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary btn-xs" href="{{ route('autor.edit', $autor->id) }}"></a>
+                                            <a href="{{ route('autor.edit', $autor->id) }}"><i class="fas fa-edit"></i></a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('autor.destroy', $autor->id)}}" method="post"> <!--<i class="far fa-edit"></i>-->
+                                            <form action="{{ route('autor.destroy', $autor->id)}}" method="post"> 
                                                 @csrf
                                                 @method('DELETE')
 
-                                                <button class="btn btn-danger btn-xs" type="submit"></button><!--<span class="glyphicon glyphicon-trash"></span>-->
+                                                <button type="submit"><i class="fas fa-trash"></i></button>
                                         </td>                     
                                     </tr>
                                 @empty
