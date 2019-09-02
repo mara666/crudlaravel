@@ -9,7 +9,7 @@
                         <h3>Listado de Libros</h3><br>
                     </div>
                     <div class="btn-group">
-                        <a href="{{ route('libro.create') }}" class="btn btn-warning">Añadir un nuevo Libro</a>
+                        <a href="{{ route('libro.create') }}" class="btn btn-dark">Añadir un nuevo Libro</a>
                     </div>
                     <br><br>
                 </div>

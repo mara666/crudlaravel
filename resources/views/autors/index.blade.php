@@ -9,7 +9,7 @@
                         <h3>Listado de Autores</h3><br>
                     </div>
                     <div class="btn-group">
-                        <a href="{{ route('autor.create') }}" class="btn btn-warning">Añadir un nuevo Autor</a>
+                        <a href="{{ route('autor.create') }}" class="btn btn-dark">Añadir un nuevo Autor</a>
                     </div>
                     <br><br>
                 </div>
