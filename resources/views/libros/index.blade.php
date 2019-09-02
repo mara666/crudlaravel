@@ -33,17 +33,17 @@
                                         <td>{{$libro->autor->nombre}}</td>
                                         <td>{{$libro->precio}}</td>
                                         <td>
-                                            <a class="btn btn-info btn-xs" href="{{ route('libro.show', $libro->id) }}"></a>
+                                            <a href="{{ route('libro.show', $libro->id) }}"><i class="fas fa-eye"></i></a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary btn-xs" href="{{ route('libro.edit', $libro->id) }}"></a>
+                                            <a href="{{ route('libro.edit', $libro->id) }}"><i class="fas fa-edit"></i></a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('libro.destroy', $libro->id)}}" method="post"> <!--<i class="far fa-edit"></i>-->
+                                            <form action="{{ route('libro.destroy', $libro->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
 
-                                                <button class="btn btn-danger btn-xs" type="submit"></button><!--<span class="glyphicon glyphicon-trash"></span>-->
+                                                <button type="submit"><i class="fas fa-trash"></i></button>
                                         </td>                     
                                     </tr>
                                 @empty
