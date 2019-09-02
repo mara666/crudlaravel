@@ -38,7 +38,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="12">No hay registros cargados.</td>
+                                        <td colspan="4">No hay registros cargados.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
