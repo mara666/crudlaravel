@@ -4,13 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
 
-                <div class="card-header">
-                    <h3>Nuevo Autor</h3>
-                </div>
+            @component('components.card')
 
-                <div class="card-body">
+                @slot('header', 'Nuevo Autor')
+
+                @slot('body')
                     <form method="POST" action="{{ route('autor.store') }}">
                         @csrf
 
@@ -41,8 +40,9 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
+                @endslot
+            @endcomponent
+
         </div>
     </div>
 </div>

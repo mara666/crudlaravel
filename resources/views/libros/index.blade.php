@@ -15,13 +15,14 @@
                 </div>
                     <div class="table table-striped">
                         <table id="mytable" class="table table-bordred table-striped">
-                            <thead>
+                            <thead class="thead-dark">
                                 <th>Nombre</th>
                                 <th>Resumen</th>
                                 <th>N° Páginas</th>
                                 <th>Edicion</th>
                                 <th>Autor</th>
                                 <th>Precio</th>
+                                <th>Acciones</th>
                             </thead>
                             <tbody>
                                 @forelse ($libros as $libro)
@@ -34,12 +35,10 @@
                                         <td>{{$libro->precio}}</td>
                                         <td>
                                             <a href="{{ route('libro.show', $libro->id) }}"><i class="fas fa-eye"></i></a>
-                                        </td>
-                                        <td>
+                                        
                                             <a href="{{ route('libro.edit', $libro->id) }}"><i class="fas fa-edit"></i></a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('libro.destroy', $libro->id)}}" method="post">
+                                        
+                                            <form action="{{ route('libro.destroy', $libro->id)}}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
 

@@ -4,13 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            @component('components.card')
 
-                <div class="card-header">
-                <h3>Actualizar datos del libro "{{$libro->nombre}}"</h3>
-                </div>
+                @slot('header', 'Actualizar datos de ' . $libro->nombre)
 
-                <div class="card-body">
+                @slot('body')
                     <form method="POST" action="{{ route('libro.update',$libro->id) }}" role="form">
                         @csrf
                         @method('PATCH')
@@ -130,8 +128,8 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
+                @endslot
+            @endcomponent
         </div>
     </div>
 </div>
