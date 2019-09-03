@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Formulario de Registro') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -137,7 +137,7 @@
                                         <input class="form-check-input" type="checkbox" name="acepto" id="acepto" {{ old('acepto') ? 'checked' : '' }}>
     
                                         <label class="form-check-label" for="acepto">
-                                            {{ __('Acepto términos') }}
+                                            {{ __('Acepto términos y condiciones') }}
                                         </label>
                                     </div>
                                 </div>

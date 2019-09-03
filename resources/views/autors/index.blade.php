@@ -11,9 +11,16 @@
                     <div class="btn-group">
                         <a href="{{ route('autor.create') }}" class="btn btn-dark">Añadir un nuevo Autor</a>
                     </div>
-                    <br><br>
+                    
+                    <div class="mt-3">
+                        <input type="text" id="formulario" class="form-control my-2">
+                        <button class="btn btn-info mb-2" id="boton">Buscar</button>
+                        <ul id="resultado">
+                        </ul>
+                    </div>
                 </div>
-                    <div class="table table-striped">
+
+                    <div class="table table-striped mt-5">
                         <table id="mytable" class="table table-bordred table-striped">
                             <thead class="thead-dark">
                                 <th>Nombre</th>
@@ -52,4 +59,46 @@
 
 </div>
 
+<script>
+        const autors = [
+            {nombre: 'Axel Marañes'},
+            {nombre: 'Franco Marañes'},
+            {nombre: 'Dario Marañes'},
+            {nombre: 'Gabriela Larrabeitía'},
+            {nombre: 'Gustavo Marañes'},
+        ]
+        const formulario = document.querySelector('#formulario');
+        const boton = document.querySelector('#boton');
+        const resultado = document.querySelector('#resultado');
+
+        const filtrar = ()=>{
+            //console.log(formulario.value);
+
+            resultado.innerHTML = '';
+            const texto = formulario.value.toLowerCase();
+
+            for(let autor of autors){
+                let nombre = autor.nombre.toLowerCase();
+                if(nombre.indexOf(texto) !== -1){
+                    resultado.innerHTML += `
+                    <li>${autor.nombre}</li>
+                    `
+                }
+            }
+
+            if(resultado.innerHTML === ''){
+                resultado.innerHTML += `
+                    <li>Autor no encontrado...</li>
+                    `
+            }
+        }
+
+        //boton.addEventListener('click', filtrar);
+
+        formulario.addEventListener('keyup', filtrar)
+
+        filtrar();
+</script>
+
 @endsection
+
