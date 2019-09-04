@@ -59,17 +59,6 @@ class LibroController extends Controller
         
         $this->validate($request, $reglas, $mensajes);
 
-        // $libro = new Libro();
-
-        // $libro->nombre = $request->nombre;
-        // $libro->resumen = $request->resumen;
-        // $libro->npagina = $request->npagina;
-        // $libro->edicion = $request->edicion;
-        // $libro->autor_id = $request->autor;
-        // $libro->precio = $request->precio;
-  
-        // $libro->save();
-
         Libro::create($request->all());
 
         return redirect()->route('libro.index');
