@@ -1,26 +1,27 @@
 @extends('layouts.master')
 @section('content')
 <div class="container">
-    <div class="row justify-content-left">
-        <div class="col-md-4 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="pull-left">
-                        <h3>Listado de Autores</h3><br>
-                    </div>
-                    <div class="btn-group">
-                        <a href="{{ route('autor.create') }}" class="btn btn-dark">Añadir un nuevo Autor</a>
-                    </div>
-                    
-                    <div class="mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            @component('components.card')
+
+                @slot('header', 'Listado de Autores' )                        
+
+                @slot('body')
+                <div class="row">
+                    <a href="{{ route('autor.create') }}" class="btn btn-dark">Añadir un nuevo Autor</a>
+                </div>
+
+                {{-- <div class="mt-3">
                         <input type="text" id="formulario" class="form-control my-2">
                         <button class="btn btn-info mb-2" id="boton">Buscar</button>
                         <ul id="resultado">
                         </ul>
-                    </div>
-                </div>
+                    </div> --}}
 
-                    <div class="table table-striped mt-5">
+                <div class="row">
+                    <div class="table table-striped mt-2">
                         <table id="mytable" class="table table-bordred table-striped">
                             <thead class="thead-dark">
                                 <th>Nombre</th>
@@ -31,15 +32,15 @@
                                     <tr>
                                         <td>{{$autor->nombre}}</td>
                                         <td>
-                                            <a href="{{ route('autor.show', $autor->id) }}"><i class="fas fa-eye"></i></a>
-                                        
-                                            <a href="{{ route('autor.edit', $autor->id) }}"><i class="fas fa-edit"></i></a>
-                                       
-                                            <form action="{{ route('autor.destroy', $autor->id)}}" method="post" class="d-inline"> 
+                                            <a href="{{ route('autor.show', $autor->id) }}"><u><i>Ver</i></u></a>
+                                            <a>/</a>
+                                            <a href="{{ route('autor.edit', $autor->id) }}"><u><i>Editar</i></u></a>
+                                            <a>/</a>
+                                            <form id="form_delete" action="{{ route('autor.destroy', $autor->id)}}" method="post" class="d-inline"> 
                                                 @csrf
                                                 @method('DELETE')
-
-                                                <button type="submit"><i class="fas fa-trash"></i></button>
+    
+                                            <a href="{{ route('autor.destroy', $autor->id)}}" onclick="document.getElementById('form_delete').submit(); return false;"><u><i>Eliminar</i></u></a>
                                         </td>                     
                                     </tr>
                                 @empty
@@ -48,15 +49,17 @@
                                     </tr>
                                 @endforelse
                             </tbody>
-
+    
                         </table>
+                        {{ $autors->links() }}
                     </div>
                 </div>
-                {{ $autors->links() }}
-            </div>
+                
+                @endslot
+            @endcomponent
+
         </div>
     </div>
-
 </div>
 
 <script>
