@@ -19,7 +19,7 @@ class UpdateUsersTable extends Migration
             $table->string('avatar');
             $table->date('fecha_nac');
             $table->string('pais');
-            $table->string('acepto');
+            //$table->boolean('acepto')->default(false);
         });
     }
 
@@ -36,7 +36,6 @@ class UpdateUsersTable extends Migration
             $table->dropColumn('avatar');
             $table->dropColumn('fecha_nac');
             $table->dropColumn('pais');
-            $table->dropColumn('acepto');
         });
     }
 }

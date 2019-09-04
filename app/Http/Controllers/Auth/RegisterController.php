@@ -56,7 +56,6 @@ class RegisterController extends Controller
             'pais' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'acepto' => ['required', 'string'],
         ]);
     }
 
@@ -72,6 +71,8 @@ class RegisterController extends Controller
 
         $fileName = basename($route);
 
+       $acepto = ($data['acepto'] === 'on') ? true : false ;
+
         return User::create([
             'name' => $data['name'],
             'apellido' => $data['apellido'],
@@ -81,7 +82,6 @@ class RegisterController extends Controller
             'pais' => $data['pais'],
             'email' => $data['email'],            
             'password' => Hash::make($data['password']),
-            'acepto' => $data['acepto'],
         ]);
     }
 }
