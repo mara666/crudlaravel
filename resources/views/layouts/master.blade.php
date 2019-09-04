@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+        @yield('title')
+    </title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -19,8 +21,13 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
+    <link rel="stylesheet" href="/css/styles.css">
+
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/1fa470c815.js"></script>
+
+    @yield('css')
+    @yield('js')
     
 </head>
 <body>
@@ -43,11 +50,11 @@
                         </li>
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Top 10
+                            Administrar
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Mejores libros</a>
-                                <a class="dropdown-item" href="#">Mejores autores</a>
+                                <a class="dropdown-item" href="/usuarios">Usuarios</a>
+                                <a class="dropdown-item" href="/consultas">Consultas</a>
                             </div>
                         </li>
                     </ul>
@@ -60,11 +67,10 @@
         </div>
     </header>
 
-        <br>
-
+    <main class="mb-4 mt-4">
         @yield('content')
-        
-        <br>
+    </main>
+
     <footer>
         <p class="text-center"><b>Darío Marañes</b> - Todos los derechos reservados</p>
     </footer>
