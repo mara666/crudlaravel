@@ -80,26 +80,21 @@
             @endif
 
             <div class="content">
-                {{-- <div class="title m-b-md">
-                    Laravel
-                </div> --}}
+                <div class="title m-b-md">
+                    La Librería
+                </div>
                 <div class="card bg-dark text-white">
-                    <img class="card-img" src="..." alt="Card image">
+                    <img class="card-img" src="/storage/portada.jpg" alt="Card image">
                     <div class="card-img-overlay">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text">Last updated 3 mins ago</p>
+                        <h5 class="card-title">La Librería está ATR</h5>
+                        <p class="card-text">Estamos acá para brindarte todo lo que necesitas.</p>
+                        <p class="card-text">Pulsa sobre "Libros" o "Autores" para más información</p>
                     </div>
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="/libro">Libros</a>
+                    <a href="/autor">Autores</a>
                 </div>
             </div>
         </div>

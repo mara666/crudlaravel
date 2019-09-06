@@ -11,6 +11,11 @@ header ul {
   ul.links {
     margin-top: 20px;
   }
+
+  table tbody tr td img {
+    width: 50px;
+    border-radius: 50%;
+  }
   
   header ul img {
     width: 40px;

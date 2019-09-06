@@ -24,3 +24,5 @@ Route::resource('usuarios', 'UsuariosController');
 Route::resource('libro', 'LibroController');
 
 Route::resource('autor', 'AutorController');
+
+Route::resource('contactos', 'ContactoController');

@@ -15,6 +15,7 @@
                             <table id="mytable" class="table table-bordred table-striped">
                                 <thead class="thead-dark">
                                     <th>Nombre</th>
+                                    <th>Avatar</th>
                                     <th>Apellido</th>
                                     <th>Email</th>
                                     <th>Usuario</th>
@@ -26,6 +27,7 @@
                                     @forelse ($usuarios as $usuario)
                                         <tr>
                                             <td>{{$usuario->name}}</td>
+                                            <td><img src="/storage/{{$usuario->avatar}}" alt=""></td>
                                             <td>{{$usuario->apellido}}</td>
                                             <td>{{$usuario->email}}</td>
                                             <td>{{$usuario->usuario}}</td>
