@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Libro;
 use App\Autor;
+use Curl;
 
 use Illuminate\Http\Request;
 
@@ -139,5 +140,15 @@ class LibroController extends Controller
     {
         $libro->delete();
         return redirect()->route('libro.index');
+    }
+
+    public function listarPaises()
+    {
+        $pais = Curl::to('https://restcountries.eu/rest/v2/all')->get();
+        $paises = json_decode($pais, true);
+
+        //dd($paises);
+        
+        return view('libros.create', compact('paises'));
     }
 }

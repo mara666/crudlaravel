@@ -21,6 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('usuarios', 'UsuariosController');
 
+//esta ruta es para listar paises pero no me los comparte con la vista de libro.create
+Route::get('libro', 'LibroController@listarPaises');
+
 Route::resource('libro', 'LibroController');
 
 Route::resource('autor', 'AutorController');

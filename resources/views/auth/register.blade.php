@@ -68,18 +68,38 @@
                             </div>
 
                         <div class="form-group row">
-                                <label for="fecha_nac" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
-    
-                                <div class="col-md-6">
-                                    <input id="fecha_nac" type="date" class="form-control @error('fecha_nac') is-invalid @enderror" name="fecha_nac" value="{{ old('fecha_nac') }}" required autocomplete="fecha_nac">
-    
-                                    @error('fecha_nac')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                            <label for="fecha_nac" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="fecha_nac" type="date" class="form-control @error('fecha_nac') is-invalid @enderror" name="fecha_nac" value="{{ old('fecha_nac') }}" required autocomplete="fecha_nac">
+
+                                @error('fecha_nac')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
+                        </div>
+
+                        {{-- <div class="form-group row">
+                            <label for="pais" class="col-md-4 col-form-label text-md-right">{{ __('País') }}</label>
+                    
+                            <div class="col-md-6">
+                                <select id="pais" class="form-control @error('pais') is-invalid @enderror" name="pais" required>
+                                    @foreach ($paises as $pais)
+                                    <option value="{{$pais->id}}" {{$pais->id == old("pais") ? "selected" : ""}}>
+                                        {{$pais->name}}
+                                    </option>
+                                    @endforeach
+                    
+                                </select>
+                                @error('pais')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <label for="pais" class="col-md-4 col-form-label text-md-right">{{ __('País') }}</label>
